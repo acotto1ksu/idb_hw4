@@ -1,0 +1,26 @@
+:root {
+    --bg-color: #E0E0E0;
+    --bg-dark: #231F20;
+}
+
+head {
+    background-color: var(--bg-dark);
+}
+
+.mainHeaderContainer {
+    background-color: var(--bg-dark);
+    padding: 8px;
+}
+
+.mainHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mainHeaderSearch {
+    height: -webkit-fill-available;
+}
+
+.mainContent {
+    
+}

@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<select name="by" class="btn btn-secondary dropdown-toggle">
+    <option value="">---</option>
+    {% for year in years %}
+    <option value="{{year}}">{{year}}</option>
+    {% endfor %}
+</select>
+<table cellpadding="4" cellspacing="4" class="table table-hover">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Course ID</th>
+        <th>Semester</th>
+        <th>Year</th>
+    </tr>
+    {% for row in schedule %}
+    <tr>
+        {% for cell in row %}
+        <td>{{cell}}</td>
+
+        {% endfor %}
+
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
