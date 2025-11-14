@@ -1,11 +1,16 @@
 {% extends 'base/base.html' %}
 {% block content %}
-<select name="by" class="btn btn-secondary dropdown-toggle">
-    <option value="">---</option>
-    {% for year in years %}
-    <option value="{{year}}">{{year}}</option>
-    {% endfor %}
-</select>
+<form action="/schedule" method="GET">
+    <input type="hidden" name="student_id" value="{{student_id}}"/>
+    <select name="year" class="btn btn-secondary dropdown-toggle" oninput="this.form.submit()" >
+        <option>Filter by year...</option>
+        <option value="">Any year</option>
+        {% for year in years %}
+        <option value="{{year}}">{{year}}</option>
+        {% endfor %}
+    </select>
+</form>
+
 <table cellpadding="4" cellspacing="4" class="table table-hover">
     <tr>
         <th>ID</th>

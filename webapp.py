@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import pymysql
 
 
-db = pymysql.connect(host="dbdev.cs.kent.edu",user= "USER",password= "PASS",database= "acotto1") 
+db = pymysql.connect(host="dbdev.cs.kent.edu",user= "USER",password= "PASSWORD",database= "acotto1") 
 
 app = Flask(__name__)
 app.debug = True
@@ -53,7 +53,11 @@ def schedule():
         return render_template('schedule.html')
     if request.method == 'GET':
         cursor = db.cursor()
-        cursor.callproc("get_schedule", [request.args.get("student_id", -1), request.args.get("year", None)])
+        input_year = request.args.get("year", None)
+        if ((input_year == None) or (input_year == "")):
+            cursor.callproc("get_schedule", [request.args.get("student_id", -1), None])
+        else:
+            cursor.callproc("get_schedule", [request.args.get("student_id", -1), request.args.get("year", None)])
         scheudle = cursor.fetchall()
         cursor.callproc("schedule_get_years", [request.args.get("student_id", -1)])
         years_table = cursor.fetchall()
@@ -64,7 +68,7 @@ def schedule():
 
         cursor.close()
 
-        return render_template('schedule.html', **{"schedule": scheudle, "years": years})
+        return render_template('schedule.html', **{"schedule": scheudle, "years": years, "student_id": request.args.get("student_id")})
     
 
 if __name__ == '__main__':    

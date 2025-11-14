@@ -1,24 +1,24 @@
 {% extends 'base/base.html' %}
 {% block content %}
-    <form action="/newstudent" method="POST">
-        <p>ID</p>
-        <input type="text" name="id" required/>
-            
-
-        <p>Name</p>
-        <input type="text" name="name" required/>
+<form action="/newstudent" method="POST">
+    <p>Student ID</p>
+    <input type="text" name="id" required />
 
 
-        <p>Department</p>
-        <select id="studentDeptSelect" name="dept" class="btn btn-secondary dropdown-toggle">
-            {% for dept in depts%}
-                <option value="{{dept}}">{{dept}}</option>
-            {% endfor %}
-        </select>
+    <p>Name</p>
+    <input type="text" name="name" required />
 
 
-        <p>Credits</p>
-        <input type="number" name="credits" value="0"/>
-        <input type="submit" value="submit"/>
-    </form>
+    <p>Department</p>
+    <select id="studentDeptSelect" name="dept" class="btn btn-secondary dropdown-toggle">
+        {% for dept in depts%}
+        <option value="{{dept}}">{{dept}}</option>
+        {% endfor %}
+    </select>
+
+
+    <p>Credits</p>
+    <input type="number" name="credits" value="0" />
+    <input type="submit" value="submit" />
+</form>
 {% endblock %}
